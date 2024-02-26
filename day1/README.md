@@ -47,4 +47,11 @@ OpenJDK 64-Bit Server VM Corretto-11.0.22.7.1 (build 11.0.22+7-LTS, mixed mode)
 [ashu@ip-172-31-19-54 ~]$
 ```
 
+### after uploading code lets use azure devops to ci and cd 
+<img src="cicd2.png">
+
+### azure devops for CICD process
+
+<img src="cicd3.png">
+
 
