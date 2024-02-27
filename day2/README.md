@@ -53,4 +53,8 @@ sudo snap enable docker
 
 <img src="art.png">
 
+### service connection in azure devops 
+
+<img src="azd.png">
+
 
