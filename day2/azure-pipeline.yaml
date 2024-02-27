@@ -22,11 +22,16 @@ steps: # actual operation which will be running in above agent
     docker version # checking docker access 
     echo 'we have testing connection with docker'
   displayName: 'checking docker connection'
-  
+# login to docker hub 
 - task: Docker@2
   inputs:
-    repository: 'ashuapp'
-    command: 'build'
+    containerRegistry: 'ashu-dockerhub'
+    command: 'login'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'ashu-dockerhub'
+    repository: 'dockerashu/ashuwalmapp'
+    command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
 
  
