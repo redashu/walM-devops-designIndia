@@ -20,5 +20,13 @@ steps: # actual operation which will be running in above agent
 - script: |
     docker -v # checking docker version 
     docker version # checking docker access 
+    echo 'we have testing connection with docker'
   displayName: 'checking docker connection'
+  
+- task: Docker@2
+  inputs:
+    repository: 'ashuapp'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+
  
