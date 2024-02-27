@@ -35,3 +35,12 @@ newgrp docker
 sudo snap disable docker
 sudo snap enable docker
 ```
+
+### Now installing agent 
+
+```
+ wget https://vstsagentpackage.azureedge.net/agent/3.234.0/vsts-agent-linux-x64-3.234.0.tar.gz
+ tar xvzf vsts-agent-linux-x64-3.234.0.tar.gz
+./config.sh
+./run.sh 
+```
