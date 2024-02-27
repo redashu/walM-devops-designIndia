@@ -44,3 +44,13 @@ sudo snap enable docker
 ./config.sh
 ./run.sh 
 ```
+
+### CI in azure devops with docker container 
+
+<img src="cicd5.png">
+
+### build output sharing with artifacts server
+
+<img src="art.png">
+
+
