@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: # when pipeline will be trigger 
+- master # whenever there is a change in master branch of azure repo 
+
+pool: Default # specify Default agent pool where we have our OWN agent running
+
+steps: # actual operation which will be running in above agent 
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- script: |
+    docker -v # checking docker version 
+    docker version # checking docker access 
+  displayName: 'checking docker connection'
+ 
