@@ -200,3 +200,38 @@ azureuser@linux-agent:~/agent$ find ~/ -iname *.pem
 /home/azureuser/poc/walm.pem
 
 ```
+
+
+### updated terraform code to create linux vm 
+
+```
+provider "aws" {
+   region = "us-east-1" # NV 
+}
+# creating key pair to connect cloud machine
+resource "tls_private_key" "ashu-key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+} 
+# creating key pair using above alog 
+resource "aws_key_pair" "ashu_genkey" {
+  key_name   = "ashu_private_key"
+  public_key = tls_private_key.ashu-key.public_key_openssh
+  provisioner "local-exec" { # Create "myKey.pem" to your computer!!
+    command = "echo '${tls_private_key.ashu-key.private_key_pem}' > ./ashukey.pem"
+  }
+}
+
+# now using resource to create Virutal machine 
+resource "aws_instance" "ashuvm" {
+
+    ami = "ami-07761f3ae34c4478d"
+    instance_type = "t2.micro"
+
+    key_name = "ashu_private_key"
+    tags = {
+      "Name" = "ashu-linux-vm"
+    }
+}
+
+```
