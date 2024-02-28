@@ -189,3 +189,14 @@ stages:
         terraform apply --auto-approve  # create resources in aws cloud 
 
 ```
+
+### key location on agent side 
+
+```
+azureuser@linux-agent:~/agent$ find ~/ -iname *.pem 
+/home/azureuser/agent/_work/9/s/terraform_code/suhaskey.pem
+/home/azureuser/agent/_work/8/s/terraform-files/kanikapvtkey.pem
+/home/azureuser/agent/_work/6/s/terraform_code/ashukey.pem
+/home/azureuser/poc/walm.pem
+
+```
