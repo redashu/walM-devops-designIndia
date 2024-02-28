@@ -97,3 +97,28 @@ stages:
 
 ```
 
+### terraform connect with aws cloud to provision resources
+
+<img src="res.png">
+
+### terraforce to create public and private key 
+
+```
+provider "aws" {
+   region = "us-east-1" # NV 
+}
+# creating key pair to connect cloud machine
+resource "tls_private_key" "ashu-key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+} 
+# creating key pair using above alog 
+resource "aws_key_pair" "ashu_genkey" {
+  key_name   = "ashu_private_key"
+  public_key = tls_private_key.ashu-key.public_key_openssh
+  provisioner "local-exec" { # Create "myKey.pem" to your computer!!
+    command = "echo '${tls_private_key.ashu-key.private_key_pem}' > ./ashukey.pem"
+  }
+}
+```
+
