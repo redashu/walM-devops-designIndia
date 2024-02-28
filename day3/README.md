@@ -7,6 +7,22 @@
 <img src="rev2.png">
 
 ### IAC using terraform 
+### to configure aws creds in azure devops agent machine run below command with that user which has azdevops agent running
+
+```
+azureuser@linux-agent:~/poc$ aws  configure 
+AWS Access Key ID [****************ABOD]: 
+AWS Secret Access Key [****************iMG4]: 
+Default region name [us-east-1]: 
+Default output format [None]: 
+azureuser@linux-agent:~/poc$ 
+azureuser@linux-agent:~/poc$ whoami
+azureuser
+azureuser@linux-agent:~/poc$ ls  /home/azureuser/.aws/
+config  credentials
+azureuser@linux-agent:~/poc$ 
+
+```
 
 <img src="terraform.png">
 
