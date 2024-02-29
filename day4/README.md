@@ -218,3 +218,19 @@ stages:
 
 
 ```
+
+### adding docker approach using dockerfile 
+
+```
+FROM oraclelinux:8.4 as BUILDER
+LABEL name=ashutoshh
+RUN dnf install java-1.8.0-openjdk.x86_64  java-1.8.0-openjdk-devel.x86_64  maven  -y 
+WORKDIR /ashu-java
+COPY .  . 
+# now running maven to create .war file 
+RUN mvn install 
+# copy war into tomcat docker image 
+FROM tomcat 
+COPY --from=BUILDER /ashu-java/target/*.war /usr/local/tomcat/webapps/
+```
+
