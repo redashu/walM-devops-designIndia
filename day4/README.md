@@ -309,4 +309,39 @@ stages:
 
 ```
 
+### deploy docker image in kubernetes infra 
+
+<img src="k8s.png">
+
+### k8s yaml file 
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashu-app
+  name: ashu-app # change here 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ashu-app # here 
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashu-app # here 
+    spec:
+      containers:
+      - image: dockerashu/ashuappwalm:167 # here 
+        name: ashuappwalm
+        ports:
+        - containerPort: 8080
+        resources: {}
+
+```
+
 
