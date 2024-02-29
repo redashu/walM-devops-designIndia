@@ -392,5 +392,26 @@ stages:
         manifests: 'k8s/deploy.yaml'
 ```
 
+### udpating 
 
+```
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashulbind
+  name: ashulbind
+spec:
+  ports:
+  - name: 80-8080
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector: # update lable of pods
+    app: ashu-app
+  type: LoadBalancer
+status:
+  loadBalancer: {}
+```
 
