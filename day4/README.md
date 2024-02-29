@@ -64,3 +64,48 @@ stages:
 
 
 ```
+
+### now ansible will install and configure java / tomcat in vm created by terraform using azdevops 
+
+<img src="ansible.png">
+
+### ansible playbook for tomcat install and configure 
+
+```
+---
+- name: Install and Start Apache Tomcat
+  hosts: all  # all machine what ever inventory has 
+  remote_user: ec2-user
+  become: yes
+
+  vars:
+    tomcat_version: "9.0.86"
+
+  tasks:
+    - name: Install Tomcat dependencies
+      package:
+        name:
+          - unzip
+          - wget
+
+    - name: Download Apache Tomcat
+      get_url:
+        url: "https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.86/bin/apache-tomcat-9.0.86.tar.gz"
+        dest: "/tmp/apache-tomcat.tar.gz"
+
+    - name: 
+      yum:
+       name: java-1.8*
+       state: present
+    - name: Extract Tomcat archive
+      ansible.builtin.unarchive:
+        src: "/tmp/apache-tomcat.tar.gz"
+        dest: "/opt"
+        remote_src: yes
+
+      
+    - name: Start Tomcat service
+      command: "chmod 755 /opt/apache-tomcat-9.0.86/ -R"
+    - name: Start Tomcat service
+      command: "nohup /opt/apache-tomcat-9.0.86/bin/startup.sh"
+```
