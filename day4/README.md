@@ -268,3 +268,45 @@ stages:
           $(tag)
 
 ```
+
+### pushing docker image to some registry 
+
+<img src="reg.png">
+
+### azure pipeline for docker build and push 
+
+```
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: 'ashutoshh docker cred'
+        repository: 'dockerashu/ashuappwalm'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
+
+```
+
+
